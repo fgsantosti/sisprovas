@@ -1,0 +1,15 @@
+{% extends 'sisprova/base.html' %}
+{% block content %}
+	<h2>Lista de Perguntas Objetivas </h2>
+		{% for pergunta_objetiva in perguntas_objetiva %}
+		<div>		
+			<h4><a href="{% url 'detalhar' pergunta_objetiva.id %}">Id pergunta</a></h4>
+			<p>Assunto: {{ pergunta_objetiva.assunto }}</p>				
+			<p>Data de publicacao: {{ pergunta_objetiva.data }}</p>
+			<p>Pergunta: <code>{{ pergunta_objetiva.pergunta }}</code></p>
+		</div>
+		{% endfor %}
+{% endblock %}
+
+
+

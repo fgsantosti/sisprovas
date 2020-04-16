@@ -1,0 +1,54 @@
+{% extends 'sisprova/base.html' %}
+{% block content %}
+		<form action="{% url 'buscar_assunto' %}" method="post">
+		{% csrf_token %}
+			<label>Selecione a Disciplina</label><br>
+			<select name="disciplina" class="custom-select">
+				{% for disciplina in disciplinas%}
+			  		<option value="{{disciplina.id}}">{{disciplina.nome}}</option>
+				{% endfor %}
+			</select>
+			<input type="submit" value="Filtrar" />
+		</form>
+
+		<h2>Lista de Perguntas Objetivas </h2>
+		<form action="{% url 'prova_selecionada' %}" method="post"> 		
+		<!-- <form action="{% url 'prova_selecionada_paginacao' %}" method="post"> -->
+			{% csrf_token %}	
+			{% for pergunta_objetiva in perguntas_objetiva %}
+				<h4>
+				<input type="checkbox" id="questao" name="questoes" 
+				value="{{ pergunta_objetiva.id }}"> Selecionar	
+				</h4>
+				<p>Disciplina: {{ pergunta_objetiva.disciplina }}</p>
+				<p>Assunto: {{ pergunta_objetiva.assunto }}</p>				
+				<p>Data de publicacao: {{ pergunta_objetiva.data }}</p>
+				<p>Pergunta:{{ pergunta_objetiva.pergunta }}</p>
+				a)  {{pergunta_objetiva.alternativa_a}}<br>
+				b)  {{pergunta_objetiva.alternativa_b}}<br>
+				c)  {{pergunta_objetiva.alternativa_c}}<br>
+				d)  {{pergunta_objetiva.alternativa_d}}<br>
+				e)  {{pergunta_objetiva.alternativa_e}}<br>
+				<a href="{% url 'detalhar' pergunta_objetiva.id %}"> Ir para pergunta</a>
+				<br><br>
+			{% endfor %}
+			<br>
+        	<label>Nome da Prova: </label>
+        	<input type="text" name="nomeprova" class="form-control" placeholder="Ex. 2º ANO INFORMÁTICA - B2 - PROF. FELIPE " >
+        	<br>
+        	<label>Selecione a Turma</label><br>
+			<select name="disciplina" class="custom-select">
+				{% for turma in turmas%}
+			  		<option value="{{turma.name}}">{{turma.name}}</option>
+				{% endfor %}
+			</select>
+			<br>
+			<br>
+			<input class="btn btn-lg btn-primary btn-block" type="submit" value="Criar Prova e Enviar Para Turma" />
+		</form> 
+
+{% endblock %}
+
+
+
+

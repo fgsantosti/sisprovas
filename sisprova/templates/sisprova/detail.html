@@ -1,0 +1,6 @@
+<ul>
+{% for choice in question %}
+    <li>{{ choice.choice_text }}</li>
+    <li><a href="{% url 'sisprova:detail' question.id %}">{{ question.assunto }}</a></li>
+{% endfor %}
+</ul>

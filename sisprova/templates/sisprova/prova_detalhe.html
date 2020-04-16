@@ -1,0 +1,32 @@
+{% extends 'sisprova/base.html' %}
+
+{% block content %}
+
+<h2>{{prova_detalhe.nome_prova}}</h2>
+
+<h2>Questoes</h2>
+ <form action="{% url 'respostas_selecionadas' %}" method="post">
+	{% csrf_token %}
+	Nome do Aluno: <input type="text" name="nomealuno" class="form-control" placeholder="Ex. Samuel Oliveira" required autofocus><br>
+	{%for questoe_selecionada in prova_questoes%}
+		id: {{questoe_selecionada.id}}<br>
+		Assunto: {{questoe_selecionada.assunto}}<br>
+		Data de publicacao: {{ questoe_selecionada.data }}<br>
+		<p>Pergunta: <code>{{ questoe_selecionada.pergunta }}</code></p>
+		<input type="checkbox" name="resp" 
+		value="{{questoe_selecionada.alternativa_a}}">-{{questoe_selecionada.alternativa_a}}<br>
+		<input type="checkbox" name="resp" 
+		value="{{questoe_selecionada.alternativa_b}}">-{{questoe_selecionada.alternativa_b}}<br>
+		<input type="checkbox" name="resp" 
+		value="{{questoe_selecionada.alternativa_c}}">-{{questoe_selecionada.alternativa_c}}<br>
+		<input type="checkbox" name="resp" 
+		value="{{questoe_selecionada.alternativa_d}}">-{{questoe_selecionada.alternativa_d}}<br>
+		<input type="checkbox" name="resp" 
+		value="{{questoe_selecionada.alternativa_e}}">-{{questoe_selecionada.alternativa_e}}<br>
+	{%endfor%}
+	<!-- <input type="hidden" name="questoes" value="{{questoes}}"> -->
+	<input type="hidden" name="provaselecionada" value="{{prova_selecionada_id}}">
+	<input type="submit" value="Responder">
+</form>
+<br>
+{% endblock %}

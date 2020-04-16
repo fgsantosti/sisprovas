@@ -1,0 +1,24 @@
+{% extends 'sisprova/base.html' %}
+{% block content %}
+<center><h2>Gabarito - Sua Respostas </h2></center>
+
+<h3>Gabarito</h3>
+{%for resposta in respostas_corretas%}
+	{{resposta.alternativa_correta}}
+{%endfor%}
+
+<h3>Sua Resposta</h3>
+{%for resposta in respostas%}
+	{{resposta}}
+{%endfor%}
+
+
+<h3>Quantidade de Respostas Corretas</h3>
+{{quant_corretas}}
+
+<h3>Você fez {{valor_porcetagem}}% da prova</h3>
+{% endblock %}
+
+
+
+

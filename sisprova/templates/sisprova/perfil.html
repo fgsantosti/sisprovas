@@ -1,0 +1,20 @@
+{% extends 'sisprova/base.html' %}
+
+{% block content %}
+
+
+<p>Olá {{user.first_name}}</p>
+<p>Atualmente faz o {{grupo}}</p>
+
+<br>
+<h2>Você tem {{quant_provas}} prova(s): </h2>
+{%for prova in provas_selecionadas%}
+		{{prova.nome_prova}}-
+		{{prova.grupo}}
+		<a href="{% url 'ir_prova' prova.id %}"> Ir para prova</a>
+		<br>
+{%endfor%}
+<br>
+
+
+{% endblock %}
